@@ -1,28 +1,39 @@
 const tmp = require('tmp');
 const util = require('util');
-const openInEditor = require('open-in-editor');
 const fs = require('fs');
+const {
+    spawn
+} = require('child_process');
 
-const editor = openInEditor.configure({
-    editor: 'vim'
-}, function (err) {
-    console.error('Something went wrong: ' + err);
-});
-
-const useTmp = util.promisify(tmp.file);
 const readFile = util.promisify(fs.readFile);
+const editor = process.env.EDITOR || 'vi';
 
 function AddSnippet() {
     tmp.file((err, path, fd, cleanUpCb) => {
-        editor.open(path).then(() => {
-            return readFile('/var/folders/zz/875t1n655jj36843tscdbnsr0000gn/T/tmp-1811HZ7yPv6GaagX.tmp', 'utf8');
-        }).then((snippet) => {
-            console.log(snippet);
-        }).catch((error) => {
-            console.log(error);
+        var child = spawn(editor, [path], {
+            stdio: 'inherit'
         });
-        //cleanUpCb();
+    
+        child.on('exit', function (e, code) {
+            console.log("finished");
+            GetSnippet(path, cleanUpCb);
+        });
     });
+}
+
+function GetSnippet(path, cleanUpCb) {
+    readFile(path, 'utf8').then((snippet) => {
+        console.log(snippet);
+        return CleanUp(cleanUpCb);
+    }).then(() => {
+        //Calls the cleanup
+    }).catch((err) => {
+        console.log(err);
+    });
+}
+
+async function CleanUp(cleanUpCb) {
+    cleanUpCb();
 }
 
 module.exports = {
