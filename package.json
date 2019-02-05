@@ -10,6 +10,7 @@
   "license": "MIT",
   "dependencies": {
     "commander": "^2.19.0",
+    "firebase-admin": "^7.0.0",
     "nedb": "^1.8.0",
     "tmp": "0.0.33"
   }
