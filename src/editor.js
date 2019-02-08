@@ -24,9 +24,7 @@ function AddSnippet() {
 
 function GetSnippet(path, cleanUpCb) {
     readFile(path, 'utf8').then((snippet) => {
-        console.log(snippet);
-
-        //ExecuteAdd('test', args);
+        snippet.trim();
         return AddToDb(snippet);
     }).then(() => {
         //Calls the cleanup
