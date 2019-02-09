@@ -1,17 +1,17 @@
-const snippet = require('./snippet-schema');
+const {schema} = require('./snippet-schema');
 const Joi = require('joi');
 const config = require('../config.json');
 
-function BuildModel(name, args) {
+function BuildModel(snippet, args) {
     var model =  {
         username: config['user-settings'].username,
-        name: name,
-        type: args.type || 'gen',
+        name: args.name,
+        lang: args.lang || 'txt',
         version: args.version || 1.0,
-        snippet: args.snippet || ''
+        snippet: snippet || ''
     };
 
-    Joi.validate(model, snippet.schema, (err) => {
+    Joi.validate(model, schema, (err) => {
         if(err) {
             console.log(err);
             model = {};

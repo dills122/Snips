@@ -15,8 +15,7 @@ const isWin = process.platform === "win32";
 const readFile = util.promisify(fs.readFile);
 const editor = process.env.EDITOR || 'vi';
 
-function AddSnippet(cmd) {
-    console.log(cmd);
+function AddSnippet(args) {
     if (!isWin) {
         tmp.file((err, path, fd, cleanUpCb) => {
             var child = spawn(editor, [path], {
@@ -30,14 +29,14 @@ function AddSnippet(cmd) {
         });
     } else {
         let snippet = edit();
-        AddToDb(snippet);
+        AddToDb(snippet, args);
     }
 }
 
-function GetSnippet(path, cleanUpCb) {
+function GetSnippet(path, args, cleanUpCb) {
     readFile(path, 'utf8').then((snippet) => {
         snippet.trim();
-        return AddToDb(snippet);
+        return AddToDb(snippet, args);
     }).then(() => {
         //Calls the cleanup
         return CleanUp(cleanUpCb);
@@ -48,9 +47,7 @@ function GetSnippet(path, cleanUpCb) {
     });
 }
 
-async function AddToDb(snippet) {
-    let args = {};
-    args.snippet = snippet;
+async function AddToDb(snippet, args) {
     ExecuteAdd('test', args);
 }
 

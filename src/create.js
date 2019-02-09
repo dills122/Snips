@@ -4,8 +4,8 @@ const config = require('./config.json');
 const {BuildModel} = require('./models/snippet-model');
 //Add firebase too
 
-function ExecuteAdd(name, args) {
-    let model = BuildModel(name, args);
+function ExecuteAdd(snippet, args) {
+    let model = BuildModel(snippet, args);
 
     if(Object.keys(model).length !== 0) {
         db.insert(model, (err, doc) => {
