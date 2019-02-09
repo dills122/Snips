@@ -4,22 +4,33 @@ const fs = require('fs');
 const {
     spawn
 } = require('child_process');
-const {ExecuteAdd} = require('./create');
+const {
+    ExecuteAdd
+} = require('./create');
+const {
+    edit
+} = require('external-editor');
 
+const isWin = process.platform === "win32";
 const readFile = util.promisify(fs.readFile);
 const editor = process.env.EDITOR || 'vi';
 
 function AddSnippet() {
-    tmp.file((err, path, fd, cleanUpCb) => {
-        var child = spawn(editor, [path], {
-            stdio: 'inherit'
+    if (!isWin) {
+        tmp.file((err, path, fd, cleanUpCb) => {
+            var child = spawn(editor, [path], {
+                stdio: 'inherit'
+            });
+
+            child.on('exit', function (e, code) {
+                console.log("finished");
+                GetSnippet(path, cleanUpCb);
+            });
         });
-    
-        child.on('exit', function (e, code) {
-            console.log("finished");
-            GetSnippet(path, cleanUpCb);
-        });
-    });
+    } else {
+        let snippet = edit();
+        AddToDb(snippet);
+    }
 }
 
 function GetSnippet(path, cleanUpCb) {
