@@ -15,7 +15,8 @@ const isWin = process.platform === "win32";
 const readFile = util.promisify(fs.readFile);
 const editor = process.env.EDITOR || 'vi';
 
-function AddSnippet() {
+function AddSnippet(cmd) {
+    console.log(cmd);
     if (!isWin) {
         tmp.file((err, path, fd, cleanUpCb) => {
             var child = spawn(editor, [path], {
