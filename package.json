@@ -9,6 +9,7 @@
   "author": "Dylan Steele",
   "license": "MIT",
   "dependencies": {
+    "clipboardy": "^1.2.3",
     "external-editor": "^3.0.3",
     "firebase-admin": "^7.0.0",
     "joi": "^14.3.1",
