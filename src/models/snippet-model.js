@@ -1,9 +1,11 @@
-const {schema} = require('./snippet-schema');
+const {
+    schema
+} = require('./snippet-schema');
 const Joi = require('joi');
 const config = require('../config.json');
 
 function BuildModel(snippet, args) {
-    var model =  {
+    var model = {
         username: config['user-settings'].username,
         name: args.name,
         lang: args.lang || 'txt',
@@ -12,10 +14,10 @@ function BuildModel(snippet, args) {
     };
 
     Joi.validate(model, schema, (err) => {
-        if(err) {
+        if (err) {
             console.log(err);
             model = {};
-        }      
+        }
     });
     return model;
 }
