@@ -5,6 +5,9 @@
     const {
         ExecuteGet
     } = require('./src/commands/fetch');
+    const {
+        Exists
+    } = require('./src/commands/exists');
 
     const argv = require('yargs')
         .usage('Usage $0 <cmd> [options]')
@@ -18,7 +21,13 @@
         let cmd = argv._[0];
         switch (cmd) {
             case 'add':
-                AddSnippet(argv);
+                Exists(argv.name).then((isPresent) => {
+                    if (isPresent) {
+                        AddSnippet(argv);
+                    } else {
+                        console.log('Already exists, try updating instead');
+                    }
+                });
                 break;
             case 'fetch':
                 ExecuteGet(argv.name);
