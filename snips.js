@@ -2,6 +2,7 @@
     const {
         AddSnippet
     } = require('./src/editor');
+
     const argv = require('yargs')
         .usage('Usage $0 <cmd> [options]')
         .command('add <name> [lang] [type] [version]', 'add a new snippet')

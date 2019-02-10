@@ -18,6 +18,8 @@ const editor = process.env.EDITOR || 'vi';
 function AddSnippet(args) {
     if (!isWin) {
         tmp.file((err, path, fd, cleanUpCb) => {
+            if (err) return;
+
             var child = spawn(editor, [path], {
                 stdio: 'inherit'
             });
@@ -48,7 +50,7 @@ function GetSnippet(path, args, cleanUpCb) {
 }
 
 async function AddToDb(snippet, args) {
-    ExecuteAdd('test', args);
+    ExecuteAdd(snippet, args);
 }
 
 async function CleanUp(cleanUpCb) {
