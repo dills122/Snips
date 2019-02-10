@@ -6,7 +6,7 @@ const {
 } = require('child_process');
 const {
     ExecuteAdd
-} = require('./create');
+} = require('./commands/add');
 const {
     edit
 } = require('external-editor');
