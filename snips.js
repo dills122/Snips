@@ -12,7 +12,7 @@
     const argv = require('yargs')
         .usage('Usage $0 <cmd> [options]')
         .command('add <name> [lang] [type] [version]', 'add a new snippet')
-        .command('fetch <name>', 'fetch a snippet')
+        .command('fetch <name> [lang]', 'fetch a snippet')
         .help()
         .argv;
 
@@ -30,7 +30,7 @@
                 }).catch(err => console.log(err));
                 break;
             case 'fetch':
-                ExecuteGet(argv.name);
+                ExecuteGet(argv);
             default:
                 break;
         }
