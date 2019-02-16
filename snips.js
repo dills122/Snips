@@ -22,12 +22,12 @@
         switch (cmd) {
             case 'add':
                 Exists(argv.name).then((isPresent) => {
-                    if (isPresent) {
+                    if (!isPresent) {
                         AddSnippet(argv);
                     } else {
                         console.log('Already exists, try updating instead');
                     }
-                });
+                }).catch(err => console.log(err));
                 break;
             case 'fetch':
                 ExecuteGet(argv.name);
