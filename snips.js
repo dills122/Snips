@@ -34,5 +34,7 @@
             default:
                 break;
         }
+    } else {
+        console.log('incorrect command, try executing --help');
     }
 })();
