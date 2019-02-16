@@ -10,8 +10,9 @@ const {
 } = require('../models/snippet-model');
 
 function ExecuteAdd(snippet, args) {
+    if(!db) return;
+    
     let model = BuildModel(snippet, args);
-
     if (Object.keys(model).length !== 0) {
         db.insert(model, (err, doc) => {
             if (!err) {

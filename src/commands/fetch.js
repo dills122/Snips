@@ -4,6 +4,8 @@ const {
 const clipboardy = require('clipboardy');
 
 function ExecuteGet(args) {
+    if(!db) return;
+    
     if(args.lang) {
         GetByLang(args.name, args.lang);
     } else {

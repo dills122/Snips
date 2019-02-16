@@ -4,6 +4,8 @@ const {
 
 function Exists(name) {
     return new Promise((reject, resolve) => {
+        if(!db) reject();
+        
         db.find({
             name: name
         }, (err, docs) => {
