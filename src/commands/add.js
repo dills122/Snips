@@ -1,13 +1,13 @@
 const {
     db
-} = require('./localdb');
+} = require('../localdb');
 const {
-    ExecuteAdd: insertCloud
-} = require('./fsdb');
-const config = require('./config.json');
+    Add: insertCloud
+} = require('../fsdb');
+const config = require('../config.json');
 const {
     BuildModel
-} = require('./models/snippet-model');
+} = require('../models/snippet-model');
 
 function ExecuteAdd(snippet, args) {
     let model = BuildModel(snippet, args);

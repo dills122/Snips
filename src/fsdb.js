@@ -3,10 +3,12 @@ const {
 } = require('./firestore');
 const config = require('./config.json');
 
-function ExecuteAdd(model) {
-    db.collection(`${config['user-settings'].username}-Snippets`).doc(model.name).set(model);
+const collectionName = `${config['user-settings'].username}-Snippets`;
+
+function Add(model) {
+    db.collection(collectionName).doc(model.name).set(model);
 }
 
 module.exports = {
-    ExecuteAdd
+    Add
 }
