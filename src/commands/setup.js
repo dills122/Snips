@@ -1,7 +1,13 @@
+const Joi = require('joi');
 const {
     schema
 } = require('../models/config-schema');
-const Joi = require('joi');
+const {
+    WriteFile
+} = require('../file-io');
+
+const _configPath = '/config.json';
+const _failStatment = 'That is not a valid config, update failed';
 
 function ValidateInput(input) {
     return new Promise((resolve, reject) => {
@@ -14,4 +20,19 @@ function ValidateInput(input) {
         });
         reject();
     });
+}
+
+function UpdateConfig(config) {
+    ValidateInput(config).then((isValid) => {
+        if(isValid) {
+            WriteFile(_configPath, JSON.stringify(config));
+            console.log('Successfully Updated Config');
+        } else {
+            console.log(_failStatment);
+        }
+    });
+}
+
+module.exports = {
+    UpdateConfig
 }
