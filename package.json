@@ -4,17 +4,20 @@
   "description": "A code snippet manager",
   "main": "snips.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "mocha \"./test/**/*.spec.js\""
   },
   "author": "Dylan Steele",
   "license": "MIT",
   "dependencies": {
     "app-root-path": "^2.1.0",
+    "chai": "^4.2.0",
     "clipboardy": "^1.2.3",
     "external-editor": "^3.0.3",
     "firebase-admin": "^7.0.0",
     "joi": "^14.3.1",
+    "mocha": "^6.0.2",
     "nedb": "^1.8.0",
+    "sinon": "^7.2.7",
     "tmp": "0.0.33",
     "yargs": "^12.0.5"
   }

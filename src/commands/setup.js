@@ -9,6 +9,10 @@ const {
 const _configPath = '/config.json';
 const _failStatment = 'That is not a valid config, update failed';
 
+const deps = {
+    ValidateInput
+};
+
 function ValidateInput(input) {
     return new Promise((resolve, reject) => {
         Joi.validate(input, schema, (err) => {
@@ -30,9 +34,12 @@ function UpdateConfig(config) {
         } else {
             console.log(_failStatment);
         }
+    }).catch((err) => {
+        console.log(err);
     });
 }
 
 module.exports = {
-    UpdateConfig
+    UpdateConfig,
+    deps
 }
