@@ -43,7 +43,7 @@ function GetByLang(name, lang) {
     });
 }
 
-function IncrementUsage(name, usage) {
+async function IncrementUsage(name, usage) {
     let usageUtd = usage + 1;
     db.update({
         name: name
