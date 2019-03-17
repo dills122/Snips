@@ -13,12 +13,8 @@ const {
 const _configPath = '/config.json';
 const _failStatement = 'That is not a valid config, update failed';
 
-const _defaultConfig = {
-    "user-settings": {
-        "username": "user1",
-        "cloud": false
-    }
-};
+const _appConfig = require('../app-config.json');
+const _defaultConfig = _appConfig["default-values"]["default-config"];
 
 const deps = {
     ValidateInput,
