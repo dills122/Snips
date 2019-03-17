@@ -4,6 +4,7 @@ const {
 
 const deps = {
     LaunchEditor,
+    edit
 };
 
 function OpenEditor() {
@@ -12,8 +13,8 @@ function OpenEditor() {
 }
 
 function LaunchEditor() {
-    let value = edit();
-    return value;
+    let value = deps.edit();
+    return value || '';
 }
 
 
