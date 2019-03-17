@@ -1,6 +1,7 @@
 # Snips
 
 [![CodeFactor](https://www.codefactor.io/repository/github/dills122/snips/badge)](https://www.codefactor.io/repository/github/dills122/snips)
+[![Build Status](https://travis-ci.org/dills122/Snips.svg?branch=master)](https://travis-ci.org/dills122/Snips)
 
 The code snippet manager at the execution of a command.
 
