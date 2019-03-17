@@ -1,7 +1,7 @@
 (() => {
     const {
-        AddSnippet
-    } = require('./src/editor');
+        ExecuteAdd
+    } = require('./src/commands/add');
     const {
         ExecuteGet
     } = require('./src/commands/fetch');
@@ -27,7 +27,7 @@
             case 'add':
                 Exists(argv.name).then((isPresent) => {
                     if (!isPresent) {
-                        AddSnippet(argv);
+                        ExecuteAdd(argv);
                     } else {
                         console.log('Already exists, try updating instead');
                     }

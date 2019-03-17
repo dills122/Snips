@@ -8,8 +8,16 @@ const config = require('../config.json');
 const {
     BuildModel
 } = require('../models/snippet-model');
+const {
+    OpenEditor
+} = require('../editor');
 
-function ExecuteAdd(snippet, args) {
+const deps = {
+    Add,
+    GetSnippet
+};
+
+function Add(snippet, args) {
     if(!db) return;
     
     let model = BuildModel(snippet, args);
@@ -27,6 +35,19 @@ function ExecuteAdd(snippet, args) {
     return true;
 }
 
+function GetSnippet(args) {
+    OpenEditor().then((snippet) => {
+        Add(snippet, args);
+    }).catch((err) => {
+        console.log(err);
+    });
+}
+
+function ExecuteAdd(args) {
+    GetSnippet(args);
+}
+
 module.exports = {
-    ExecuteAdd
+    ExecuteAdd,
+    deps
 }
