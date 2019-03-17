@@ -45,11 +45,8 @@ function UpdateConfig(config) {
 }
 
 function Setup() {
-    OpenEditor().then((config) => {
-        UpdateConfig(JSON.parse(config));
-    }).catch((err) => {
-        console.log(err);
-    });
+    let config = OpenEditor();
+    UpdateConfig(JSON.parse(config));
 }
 
 module.exports = {
