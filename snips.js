@@ -9,14 +9,19 @@
         Exists
     } = require('./src/commands/exists');
     const {
-        Setup
+        Setup,
+        PrintConfig
     } = require('./src/commands/setup');
 
     const argv = require('yargs')
         .usage('Usage $0 <cmd> [options]')
         .command('add <name> [lang] [type] [version]', 'add a new snippet')
         .command('fetch <name> [lang]', 'fetch a snippet')
-        .command('setup', 'configure your settings')
+        .command('setup', 'configure your settings', (yargs) => {
+            yargs.option('p', {
+                alias: 'print'
+            })
+        })
         .help()
         .argv;
 
@@ -37,7 +42,11 @@
                 ExecuteGet(argv);
                 break;
             case 'setup':
-                Setup();
+                if (argv.p) {
+                    PrintConfig();
+                } else {
+                    Setup();
+                }
                 break;
             default:
                 break;

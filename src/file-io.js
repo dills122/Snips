@@ -9,18 +9,19 @@ const writeFile = util.promisify(fs.writeFile);
 
 function WriteFile(filePath, contents) {
     writeFile(VerifyPath(filePath), contents).then((err) => {
-        if(err) {
+        if (err) {
             console.log(err);
         }
     });
 }
 
 async function ReadFile(filePath) {
-    return await readFile(filePath, 'utf8');ß
+    return await readFile(filePath, 'utf8');
+    ß
 }
 
 function VerifyPath(path) {
-    if(path) {
+    if (path) {
         return `${appPath}/src${path}`;
     }
 }

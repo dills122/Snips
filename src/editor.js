@@ -1,12 +1,8 @@
 const {
-    ReadFile
-} = require('./file-io');
-const {
     edit
 } = require('external-editor');
 
 const deps = {
-    readFile: ReadFile,
     LaunchEditor,
 };
 

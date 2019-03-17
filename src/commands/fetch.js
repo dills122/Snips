@@ -1,12 +1,12 @@
+const clipboardy = require('clipboardy');
 const {
     db
 } = require('../localdb');
-const clipboardy = require('clipboardy');
 
 function ExecuteGet(args) {
-    if(!db) return;
-    
-    if(args.lang) {
+    if (!db) return;
+
+    if (args.lang) {
         GetByLang(args.name, args.lang);
     } else {
         GetByName(args.name);
