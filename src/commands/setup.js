@@ -7,7 +7,7 @@ const {
 } = require('../file-io');
 const {
     OpenEditor
-} = require('../editor-n');
+} = require('../editor');
 
 const _configPath = '/config.json';
 const _failStatement = 'That is not a valid config, update failed';

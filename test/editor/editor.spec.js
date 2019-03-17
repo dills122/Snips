@@ -3,7 +3,7 @@ const sinon = require('sinon');
 const {
     OpenEditor,
     deps
-} = require('../../src/editor-n');
+} = require('../../src/editor');
 
 describe('Editor', () => {
     var readFileStub;

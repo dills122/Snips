@@ -1,62 +1,74 @@
 const tmp = require('tmp');
 const util = require('util');
-const fs = require('fs');
+const {
+    ReadFile
+} = require('./file-io');
 const {
     spawn
 } = require('child_process');
-const {
-    ExecuteAdd
-} = require('./commands/add');
 const {
     edit
 } = require('external-editor');
 
 const isWin = process.platform === "win32";
-const readFile = util.promisify(fs.readFile);
 const editor = process.env.EDITOR || 'vi';
 
-function AddSnippet(args) {
-    if (!isWin) {
-        tmp.file((err, path, fd, cleanUpCb) => {
-            if (err) return;
+const deps = {
+    readFile: ReadFile,
+    ExtractResult,
+    LaunchEditor,
+};
 
-            var child = spawn(editor, [path], {
-                stdio: 'inherit'
-            });
+async function OpenEditor() {
+    try {
+        let result = await deps.LaunchEditor();
 
-            child.on('exit', function (e, code) {
-                console.log("finished");
-                GetSnippet(path, cleanUpCb);
-            });
-        });
-    } else {
-        let snippet = edit();
-        AddToDb(snippet, args);
+        if (result.hasOwnProperty('path')) {
+            return await ExtractResult(result.path);
+        } else {
+            return result.value;
+        }
+    } catch (err) {
+        return '';
     }
 }
 
-function GetSnippet(path, args, cleanUpCb) {
-    readFile(path, 'utf8').then((snippet) => {
-        snippet.trim();
-        return AddToDb(snippet, args);
-    }).then(() => {
-        //Calls the cleanup
-        return CleanUp(cleanUpCb);
-    }).then(() => {
+function LaunchEditor() {
+    var result = {};
+    return new Promise((resolve, reject) => {
+        if (!isWin) {
+            tmp.file((err, path, fd, cleanUpCb) => {
+                if (err) return;
 
-    }).catch((err) => {
-        console.log(err);
+                var child = spawn(editor, [path], {
+                    stdio: 'inherit'
+                });
+
+                child.on('exit', function (e, code) {
+                    result.path = path;
+                    resolve(result);
+                });
+            });
+        } else {
+            let value = edit();
+            result.value = value;
+            resolve(result);
+        }
+        reject();
     });
 }
 
-async function AddToDb(snippet, args) {
-    ExecuteAdd(snippet, args);
+async function ExtractResult(path) {
+    try {
+        let value = await deps.readFile(path);
+        return value;
+    } catch (err) {
+        return '';
+    }
 }
 
-async function CleanUp(cleanUpCb) {
-    cleanUpCb();
-}
 
 module.exports = {
-    AddSnippet
+    OpenEditor,
+    deps
 }
