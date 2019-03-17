@@ -6,6 +6,7 @@ module.exports = {
         name: Joi.string().required(),
         lang: Joi.string().optional(),
         version: Joi.number().min(1),
-        snippet: Joi.string().min(1).max(2000).required()
+        snippet: Joi.string().min(1).max(2000).required(),
+        usage: Joi.number().min(1).required()
     })
 };
