@@ -45,6 +45,7 @@ function UpdateConfig(config) {
 }
 
 function Setup() {
+    let config = OpenEditor();
     UpdateConfig(JSON.parse(config));
 }
 
