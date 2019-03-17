@@ -8,4 +8,4 @@ module.exports = {
         version: Joi.number().min(1),
         snippet: Joi.string().min(1).max(2000).required()
     })
-}
+};

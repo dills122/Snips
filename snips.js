@@ -8,11 +8,15 @@
     const {
         Exists
     } = require('./src/commands/exists');
+    const {
+        Setup
+    } = require('./src/commands/setup');
 
     const argv = require('yargs')
         .usage('Usage $0 <cmd> [options]')
         .command('add <name> [lang] [type] [version]', 'add a new snippet')
         .command('fetch <name> [lang]', 'fetch a snippet')
+        .command('setup', 'configure your settings')
         .help()
         .argv;
 
@@ -31,6 +35,10 @@
                 break;
             case 'fetch':
                 ExecuteGet(argv);
+                break;
+            case 'setup':
+                Setup();
+                break;
             default:
                 break;
         }

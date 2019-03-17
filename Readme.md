@@ -1,6 +1,7 @@
 # Snips
 
 [![CodeFactor](https://www.codefactor.io/repository/github/dills122/snips/badge)](https://www.codefactor.io/repository/github/dills122/snips)
+[![Build Status](https://travis-ci.org/dills122/Snips.svg?branch=master)](https://travis-ci.org/dills122/Snips)
 
 The code snippet manager at the execution of a command.
 
@@ -34,6 +35,7 @@ Config Schema
   * version - optional parameter that currently is only for personal tracking, improved capabilities to come
 * `fetch` - `fetch <name> [language]` fetches a snippet and adds it to your clipboard
   * language - optional parameter to fetch a snippet by language, if not used the results will return the first snippet of the given name
+* `setup` - `setup` launches an editor for you to place your config json into, which will setup app       environment variables and user info.
 
 ## Storage Options
 
