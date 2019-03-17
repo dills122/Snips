@@ -14,7 +14,7 @@ function OpenEditor() {
 
 function LaunchEditor() {
     let value = deps.edit();
-    return value;
+    return value || '';
 }
 
 

@@ -13,6 +13,13 @@ const {
 const _configPath = '/config.json';
 const _failStatement = 'That is not a valid config, update failed';
 
+const _defaultConfig = {
+    "user-settings": {
+        "username": "user1",
+        "cloud": false
+    }
+};
+
 const deps = {
     ValidateInput,
     UpdateConfig,
@@ -47,7 +54,10 @@ function UpdateConfig(config) {
 
 function Setup() {
     let config = OpenEditor();
-    UpdateConfig(JSON.parse(config));
+    if(config) {
+        config = JSON.parse(config);
+    }
+    UpdateConfig(config || _defaultConfig);
 }
 
 async function PrintConfig() {
