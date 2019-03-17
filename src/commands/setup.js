@@ -3,7 +3,8 @@ const {
     schema
 } = require('../models/config-schema');
 const {
-    WriteFile
+    WriteFile,
+    ReadFile
 } = require('../file-io');
 const {
     OpenEditor
@@ -12,10 +13,10 @@ const {
 const _configPath = '/config.json';
 const _failStatement = 'That is not a valid config, update failed';
 
-
 const deps = {
     ValidateInput,
-    UpdateConfig
+    UpdateConfig,
+    ReadFile
 };
 
 function ValidateInput(input) {
@@ -49,7 +50,17 @@ function Setup() {
     UpdateConfig(JSON.parse(config));
 }
 
+async function PrintConfig() {
+    let config = await deps.ReadFile(_configPath);
+    if(config) {
+        console.dir(config);
+    } else {
+        console.log('Error finding config');
+    }
+}
+
 module.exports = {
     Setup,
+    PrintConfig,
     deps
 }
