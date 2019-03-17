@@ -9,7 +9,7 @@
         Exists
     } = require('./src/commands/exists');
     const {
-        UpdateConfig
+        Setup
     } = require('./src/commands/setup');
 
     const argv = require('yargs')
@@ -37,13 +37,7 @@
                 ExecuteGet(argv);
                 break;
             case 'setup':
-                const config = {
-                    "user-settings": {
-                        "username": "dills122",
-                        "cloud": true
-                    }
-                };
-                UpdateConfig(config);
+                Setup();
                 break;
             default:
                 break;

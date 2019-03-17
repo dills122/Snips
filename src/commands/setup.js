@@ -5,12 +5,17 @@ const {
 const {
     WriteFile
 } = require('../file-io');
+const {
+    OpenEditor
+} = require('../editor-n');
 
 const _configPath = '/config.json';
-const _failStatment = 'That is not a valid config, update failed';
+const _failStatement = 'That is not a valid config, update failed';
+
 
 const deps = {
-    ValidateInput
+    ValidateInput,
+    UpdateConfig
 };
 
 function ValidateInput(input) {
@@ -28,18 +33,26 @@ function ValidateInput(input) {
 
 function UpdateConfig(config) {
     ValidateInput(config).then((isValid) => {
-        if(isValid) {
+        if (isValid) {
             WriteFile(_configPath, JSON.stringify(config));
             console.log('Successfully Updated Config');
         } else {
-            console.log(_failStatment);
+            console.log(_failStatement);
         }
     }).catch((err) => {
         console.log(err);
     });
 }
 
+function Setup() {
+    OpenEditor().then((config) => {
+        UpdateConfig(JSON.parse(config));
+    }).catch((err) => {
+        console.log(err);
+    });
+}
+
 module.exports = {
-    UpdateConfig,
+    Setup,
     deps
 }
