@@ -1,14 +1,14 @@
 const Joi = require('joi');
 const {
-    schema
-} = require('../models/config-schema');
+    OpenEditor
+} = require('../editor');
 const {
     WriteFile,
     ReadFile
 } = require('../file-io');
 const {
-    OpenEditor
-} = require('../editor');
+    schema
+} = require('../models/config-schema');
 
 const _configPath = '/config.json';
 const _failStatement = 'That is not a valid config, update failed';
@@ -52,7 +52,7 @@ function Setup() {
 
 async function PrintConfig() {
     let config = await deps.ReadFile(_configPath);
-    if(config) {
+    if (config) {
         console.dir(config);
     } else {
         console.log('Error finding config');

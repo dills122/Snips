@@ -1,16 +1,17 @@
 const {
-    db
-} = require('../localdb');
+    OpenEditor
+} = require('../editor');
 const {
     Add: insertCloud
 } = require('../fsdb');
-const config = require('../config.json');
+const {
+    db
+} = require('../localdb');
 const {
     BuildModel
 } = require('../models/snippet-model');
-const {
-    OpenEditor
-} = require('../editor');
+
+const config = require('../config.json');
 
 const deps = {
     Add,
