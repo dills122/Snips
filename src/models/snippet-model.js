@@ -10,7 +10,8 @@ function BuildModel(snippet, args) {
         name: args.name,
         lang: args.lang || 'txt',
         version: args.version || 1.0,
-        snippet: snippet || ''
+        snippet: snippet || '',
+        usage: args.usage || 1
     };
 
     Joi.validate(model, schema, (err) => {

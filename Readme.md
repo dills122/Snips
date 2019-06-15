@@ -13,6 +13,8 @@ Install
 npm install -g {workingDir}\Snips
 ```
 
+**Don't Need to do this anymore, check commands list for `setup`**
+
 Navigate to the location your global npm packages are installed and find **Snips** here you can setup your **config** file here.
 
 > if you don't know where your npm global packages are installed run this command `npm list -g`
