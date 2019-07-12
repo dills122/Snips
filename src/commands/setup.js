@@ -13,9 +13,6 @@ const {
 const _configPath = '/config.json';
 const _failStatement = 'That is not a valid config, update failed';
 
-const _appConfig = require('../app-config.json');
-const _defaultConfig = _appConfig["default-values"]["default-config"];
-
 const deps = {
     ValidateInput,
     UpdateConfig,
@@ -54,6 +51,15 @@ function Setup() {
         config = JSON.parse(config);
     }
     UpdateConfig(config || _defaultConfig);
+}
+
+async function PrintConfig() {
+    let config = await deps.ReadFile(_configPath);
+    if (config) {
+        console.dir(config);
+    } else {
+        console.log('Error finding config');
+    }
 }
 
 async function PrintConfig() {

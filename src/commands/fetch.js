@@ -2,9 +2,6 @@ const clipboardy = require('clipboardy');
 const {
     db
 } = require('../localdb');
-const {
-    Update
-} = require('../fsdb');
 
 function ExecuteGet(args) {
     if (!db) return;
@@ -60,11 +57,11 @@ async function IncrementUsage(name, usage) {
         }
     });
 
-    Update({
-        name
-    }, {
-        usage: usageUtd
-    });
+    // Update({
+    //     name
+    // }, {
+    //     usage: usageUtd
+    // });
 }
 
 module.exports = {
