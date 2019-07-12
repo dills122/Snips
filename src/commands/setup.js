@@ -47,7 +47,19 @@ function UpdateConfig(config) {
 
 function Setup() {
     let config = OpenEditor();
-    UpdateConfig(JSON.parse(config));
+    if(config) {
+        config = JSON.parse(config);
+    }
+    UpdateConfig(config || _defaultConfig);
+}
+
+async function PrintConfig() {
+    let config = await deps.ReadFile(_configPath);
+    if (config) {
+        console.dir(config);
+    } else {
+        console.log('Error finding config');
+    }
 }
 
 async function PrintConfig() {

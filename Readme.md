@@ -13,6 +13,8 @@ Install
 npm install -g {workingDir}\Snips
 ```
 
+**Don't Need to do this anymore, check commands list for `setup`**
+
 Navigate to the location your global npm packages are installed and find **Snips** here you can setup your **config** file here.
 
 > if you don't know where your npm global packages are installed run this command `npm list -g`
@@ -36,7 +38,7 @@ Config Schema
 * `fetch` - `fetch <name> [language]` fetches a snippet and adds it to your clipboard
   * language - optional parameter to fetch a snippet by language, if not used the results will return the first snippet of the given name
 * `setup` - `setup` launches an editor for you to place your config json into, which will setup app       environment variables and user info.
-   * print - optional flag that will print out your current config settings to console (Coming next PR)
+   * print - optional flag that will print out your current config settings to console, handy since you have to write the whole config on edits (whoops).
 
 ## Storage Options
 

@@ -1,0 +1,14 @@
+{
+    "app": {
+        "name": "Snips",
+        "description": "A command line code snippet manager with cloud and local storage"
+    },
+    "default-values": {
+        "default-config": {
+            "user-settings": {
+                "username": "user1",
+                "cloud": false
+            }
+        }
+    }
+}

@@ -13,6 +13,17 @@ describe('Editor', () => {
             let value = OpenEditor();
             assert.equal(value, 'value');
             assert(launchEditorStub.calledOnce);
+            launchEditorStub.restore();
+            done();
+        });
+    });
+    describe('::LaunchEditor', () => {
+        it('Should open an editor and return a value', (done)=> {
+            let editStub = sinon.stub(deps, 'edit');
+            editStub.returns('value');
+            let actual = deps.LaunchEditor();
+            assert.equal(actual, 'value');
+            assert(editStub.calledOnce);
             done();
         });
     });
